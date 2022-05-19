@@ -1,0 +1,24 @@
+{% extends "blog/home.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section"> <!-- This is just for styling -->
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                {{form|crispy}} <!-- This will separate the text in different lines (paragraphs) -->
+            </fieldset>
+            <div class="form-group" >
+                <button type="submit" class="btn btn-outline-info">Log In</button>
+            </div>
+        </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Don't have an account yet? <a href="{% url 'signup' %}">Sign Up</a>
+                </small>
+            </div>
+    </div>
+{% endblock content %}
