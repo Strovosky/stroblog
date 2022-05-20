@@ -9,3 +9,6 @@ def home(request):
 
 def about_us(request):
     return render(request, "blog/about_us.html", {})
+
+def my_account(request):
+    return render(request, "blog/my_account.html", {})

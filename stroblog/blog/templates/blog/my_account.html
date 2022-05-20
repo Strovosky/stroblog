@@ -1,0 +1,18 @@
+{% extends "blog/home.html" %}
+{% block title %}My Account{% endblock title %}
+{% block content%}
+    {% if user.is_authenticated %}
+        {% for blog in user.posts.all %}
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ blog.author }}</a>
+                <small class="text-muted">{{ blog.date_created|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ blog.title }}</a></h2>
+            <p class="article-content">{{ blog.content }}</p>
+            </div>
+        </article>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}
