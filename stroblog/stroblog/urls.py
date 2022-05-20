@@ -24,5 +24,6 @@ urlpatterns = [
     path("register/", view=security_views.register, name="signup"),
     # We import each view at a time.
     path("login/", view=auth_views.LoginView.as_view(template_name="security/login.html"), name="login"),
-    path("logout/", view=auth_views.LogoutView.as_view(template_name="security/logout.html"), name="logout")
+    path("logout/", view=auth_views.LogoutView.as_view(template_name="security/logout.html"), name="logout"),
+    path("profile/", view=security_views.profile, name="profile")
 ]

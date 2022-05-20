@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import SignupForm
 from django.contrib import messages # You need to import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -15,3 +16,7 @@ def register(request):
     else:
         form = SignupForm()
     return render(request, "security/register.html", {"form": form})
+
+@login_required
+def profile(request):
+    return render(request, "security/profile.html", {})
