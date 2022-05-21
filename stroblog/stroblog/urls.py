@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from security import views as security_views
 from django.contrib.auth import views as auth_views # We need to import the views
 
@@ -25,5 +27,8 @@ urlpatterns = [
     # We import each view at a time.
     path("login/", view=auth_views.LoginView.as_view(template_name="security/login.html"), name="login"),
     path("logout/", view=auth_views.LogoutView.as_view(template_name="security/logout.html"), name="logout"),
-    path("profile/", view=security_views.profile, name="profile")
+    path("profile/", view=security_views.profile, name="profile"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
