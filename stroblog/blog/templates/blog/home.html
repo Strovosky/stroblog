@@ -86,7 +86,7 @@
                             <a class="mr-2" href="#">{{ blog.author }}</a>
                             <small class="text-muted">{{ blog.date_created|date:"F d, Y" }}</small>
                         </div>
-                        <h2><a class="article-title" href="#">{{ blog.title }}</a></h2>
+                        <h2><a class="article-title" href="{% url 'detail-post' blog.id %}">{{ blog.title }}</a></h2>
                         <p class="article-content">{{ blog.content }}</p>
                         </div>
                     </article>
