@@ -1,14 +1,32 @@
 {% extends "blog/home.html" %}
 {% block title %}Post {{object.id}}{% endblock title %}
 {% block content %}
-<article class="media content-section">
-    <div class="media-body">
-    <div class="article-metadata">
-        <a class="mr-2" href="#">{{ object.author }}</a>
-        <small class="text-muted">{{ object.date_created|date:"F d, Y" }}</small>
-    </div>
-    <h2 class="article-title" >{{ object.title }}</h2>
-    <p class="article-content">{{ object.content }}</p>
-    </div>
-</article>
+{% if user == object.author %}
+    <form method="post">
+        {% csrf_token %}
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ object.author }}</a>
+                <small class="text-muted">{{ object.date_created|date:"F d, Y" }}</small>
+            </div>
+            <h2 class="article-title" >{{ object.title }}</h2>
+            <p class="article-content">{{ object.content }}</p>
+            <a href="{% url 'update-post' object.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+            <a href="{% url 'delete-post' object.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+            </div>
+        </article>
+    </form>
+{% else %}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_created|date:"F d, Y" }}</small>
+        </div>
+        <h2 class="article-title" >{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+        </div>
+    </article>
+{% endif %}
 {% endblock content %}

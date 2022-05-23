@@ -83,12 +83,23 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
     
-    success_url = "/"
+    success_url = "{% url 'my-account' %}"
 
 
 
 def about_us(request):
     return render(request, "blog/about_us.html", {})
 
-def my_account(request):
-    return render(request, "blog/my_account.html", {})
+
+class MyPostsListView(ListView):
+    model = Posts
+    template_name: str = "blog/my_posts.html"
+
+    # In which order we want the posts to appear.
+    ordering = ["-date_created"]
+
+
+
+
+#def my_account(request):
+#    return render(request, "blog/my_account.html", {})
