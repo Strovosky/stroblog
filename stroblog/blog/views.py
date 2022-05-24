@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -31,12 +31,23 @@ class PostListView(ListView):
 
     # In which order we want the posts to appear.
     ordering = ["-date_created"]
+    paginate_by: int = 5
 
 class PostDetailView(DetailView):
     # Conventions for DetailView
     # template_name = <app>/<model>_<viewtype>.html     example: "blog/posts_detail.html"
     # context_object_name = "object"
     model = Posts
+
+
+class UserBlogsPostListView(ListView):
+    model = Posts
+    template_name: str = "blog/user_posts.html"
+    paginate_by: int = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Posts.objects.filter(author=user).order_by('-date_created')
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Posts
@@ -83,7 +94,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
     
-    success_url = "{% url 'my-account' %}"
+    success_url = "/"
 
 
 
