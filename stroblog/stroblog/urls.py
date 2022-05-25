@@ -27,7 +27,19 @@ urlpatterns = [
     # We import each view at a time.
     path("login/", view=auth_views.LoginView.as_view(template_name="security/login.html"), name="login"),
     path("logout/", view=auth_views.LogoutView.as_view(template_name="security/logout.html"), name="logout"),
-    path("profile/", view=security_views.profile, name="profile"),
+    path("password-reset/",
+    auth_views.PasswordResetView.as_view(template_name="security/password_reset.html"),
+    name="reset_password"),
+    path("password-reset/done/",
+    auth_views.PasswordResetDoneView.as_view(template_name="security/password_reset_done.html"),
+    name="password_reset_done"),
+    path("password-reset-confirm/<uidb64>/<token>/",
+    auth_views.PasswordResetConfirmView.as_view(template_name="security/password_reset_confirm.html"),
+    name="password_reset_confirm"),
+    path("password-reset-complete/",
+    auth_views.PasswordResetCompleteView.as_view(template_name="security/password_reset_complete.html"),
+    name="password_reset_complete"),
+    path("profile/", view=security_views.profile, name="profile")
 ]
 
 if settings.DEBUG:
