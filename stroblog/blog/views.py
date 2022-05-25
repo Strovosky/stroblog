@@ -111,6 +111,5 @@ class MyPostsListView(ListView):
 
 
 
-
 #def my_account(request):
 #    return render(request, "blog/my_account.html", {})

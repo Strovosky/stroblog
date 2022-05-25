@@ -54,7 +54,7 @@
                     <div class="navbar-nav mr-auto">
                       <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
                       <a class="nav-item nav-link" href="{% url 'blog-about-us' %}">About Us</a>
-                      <a class="nav-item nav-link" href="{% url 'my-account' %}">My Posts</a>
+                      <a class="nav-item nav-link" href="{% url 'user-posts' user.username %}">My Posts</a>
                       <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                     </div>
                     <!-- Navbar Right Side -->
@@ -95,15 +95,16 @@
                   <a href="?page={{page_obj.paginator.num_pages}}" class="btn btn-outline-info">Last</a>
                 {% endif %}
                 <p></p>
-          {% endif %}
+              {% endif %}
                 {% for blog in posts %}
                     <article class="media content-section">
                         <div class="media-body">
-                        <div class="article-metadata">
-                            <a class="mr-2" href="{% url 'user-posts' blog.author.username  %}">{{ blog.author }}</a>
-                            <small class="text-muted">{{ blog.date_created|date:"F d, Y" }}</small>
-                        </div>
-                        <h2><a class="article-title" href="{% url 'detail-post' blog.id %}">{{ blog.title }}</a></h2>
+                          <img class="rounded-circle account-img" src="{{blog.author.profile.profile_pic.url}}">
+                          <div class="article-metadata">
+                              <a class="mr-2" href="{% url 'user-posts' blog.author.username  %}">{{ blog.author }}</a>
+                              <small class="text-muted">{{ blog.date_created|date:"F d, Y" }}</small>
+                          </div>
+                          <h2><a class="article-title" href="{% url 'detail-post' blog.id %}">{{ blog.title }}</a></h2>
                         <p class="article-content">{{ blog.content }}</p>
                         </div>
                     </article>

@@ -13,6 +13,8 @@ from .views import (
 urlpatterns = [
     path(route="", view=PostListView.as_view(), name="blog-home"),
     path(route="about-us/", view=views.about_us, name="blog-about-us"),
+
+    # my-posts won't be used as a path because all of it's functionality can be handled by user-posts/username
     path(route="my-posts/", view=MyPostsListView.as_view(), name="my-account"),
     path(route="post/<int:pk>/", view=PostDetailView.as_view(), name="detail-post"),
     path(route="post/create/", view=PostCreateView.as_view(), name='create-post'),

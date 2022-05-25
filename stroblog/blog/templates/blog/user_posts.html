@@ -3,24 +3,26 @@
 {% block title %}{{view.kwargs.username}} Posts{% endblock %}
 
 {% block content %}
-    <p class="mb-3">{{page_obj.paginator.count}} post(s) total.</p>
-    {% if object_list|length > 1 %}
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{object_list.1.author.profile.profile_pic.url}}">
-            <div class="media-body">
-                    <h2 class="account-heading">{{object_list.1.author.username}}</h2>
-                <p class="text-secondary">{{object_list.1.author.email}}</p>
-            </div>
-        </div>
-    {% else %}
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{object.author.profile.profile_pic.url}}">
-            <div class="media-body">
-                    <h2 class="account-heading">{{object.author.username}}</h2>
-                <p class="text-secondary">{{object.author.email}}</p>
-            </div>
-        </div>
-    {% endif %}
+
+<p class="mb-3">{{page_obj.paginator.count}} post(s) total.</p>
+<div class="media">
+    <img class="rounded-circle account-img" src="{{object_list.1.author.profile.profile_pic.url}}">
+    <div class="media-body">
+            <h2 class="account-heading">{{object_list.1.author.username}}</h2>
+        <p class="text-secondary">{{object_list.1.author.email}}</p>
+    </div>
+</div>
+<p></p>
+<p></p>
+{% if user.username == view.kwargs.username %}
+<form method="post" >
+    <article class="container">
+        <a href="{% url 'create-post' %}" class="btn btn-outline-info">Create Post</a>
+    </article>
+</form>
+<p></p>
+{% endif %}
+
 
     {% if is_paginated %}
         {% if page_obj.has_previous %}
