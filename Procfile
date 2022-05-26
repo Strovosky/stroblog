@@ -1,1 +1,1 @@
-web: gunicorn strovosky_blog:application -b xx.xxx.xxx.xx 8000
+web: gunicorn strovosky_blog.wsgi --log-file -
