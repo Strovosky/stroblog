@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'stroblog.urls'
@@ -151,3 +152,5 @@ EMAIL_HOST_USER = os.getenv("GMAIL")
 EMAIL_HOST_PASSWORD = os.getenv("GMAIL_PASSWORD")
 
 django_on_heroku.settings(locals())
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
