@@ -128,7 +128,7 @@
                 {% endif %}
               {% endblock content %}
             </div>
-            {% if not user %}
+            {% if user.email == None or user.email|length > = 0 %}
               <div class="col-md-4">
                 <div class="content-section">
                   <h3>Our Sidebar</h3>
