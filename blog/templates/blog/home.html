@@ -128,28 +128,35 @@
                 {% endif %}
               {% endblock content %}
             </div>
-            <div class="col-md-4">
-              <div class="content-section">
-                <h3>Our Sidebar</h3>
-                <p class='text-muted'>Write Your Ideas.
-                  {% if user %}
+            {% if user %}
+              <div class="col-md-4">
+                <div class="content-section">
+                  <h3>Our Sidebar</h3>
+                  <p class='text-muted'>Write Your Ideas.
                     <ul class="list-group">
                       <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home' %}">Home</a></li>
                       <li class="list-group-item list-group-item-light"><a href="{% url 'profile' %}">My Account</a></li>
                       <li class="list-group-item list-group-item-light"><a href="{% url 'logout' %}">Log Out</a></li>
                       <li class="list-group-item list-group-item-light"><a href="{% url 'blog-about-us' %}">About Us</a></li>
                     </ul>
-                  {% else %}
+                  </p>
+                </div>
+              </div>
+            {% else %}
+              <div class="col-md-4">
+                <div class="content-section">
+                  <h3>Our Sidebar</h3>
+                  <p class='text-muted'>Write Your Ideas.
                     <ul class="list-group">
                       <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home' %}">Home</a></li>
                       <li class="list-group-item list-group-item-light"><a href="{% url 'login' %}">Sign In</a></li>
                       <li class="list-group-item list-group-item-light"><a href="{% url 'signup' %}">Sign Up</a></li>
                       <li class="list-group-item list-group-item-light"><a href="{% url 'blog-about-us' %}">About Us</a></li>
                     </ul>
-                  {% endif %}
-                </p>
+                  </p>
+                </div>
               </div>
-            </div>
+            {% endif %}
           </div>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
