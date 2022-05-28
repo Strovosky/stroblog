@@ -1,0 +1,2 @@
+This is a bit more elaborated blog where I practiced creating dynamic pages, user registration and login, pagination and password reset emailing.
+You can check out the page at https://stroblog.herokuapp.com/
