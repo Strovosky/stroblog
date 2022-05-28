@@ -1,1 +1,1 @@
-web: gunicorn strovosky_blog.wsgi --log-file -
+web: gunicorn stroblog.wsgi --log-file -
